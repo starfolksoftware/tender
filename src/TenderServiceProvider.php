@@ -1,10 +1,13 @@
 <?php
 
-namespace Tender\Tender;
+namespace Tender;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Tender\Tender\Commands\TenderCommand;
+use Tender\Actions\CreateCurrency;
+use Tender\Actions\DeleteCurrency;
+use Tender\Actions\UpdateCurrency;
+use Tender\Commands\InstallCommand;
 
 class TenderServiceProvider extends PackageServiceProvider
 {
@@ -18,8 +21,23 @@ class TenderServiceProvider extends PackageServiceProvider
         $package
             ->name('tender')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_tender_table')
-            ->hasCommand(TenderCommand::class);
+            ->hasCommand(InstallCommand::class);
+
+        if (Tender::$runsMigrations) {
+            $package->hasMigration('create_tender_table');
+        }
+
+        if (Tender::$registersRoutes) {
+            $package->hasRoutes('web');
+        }
+    }
+
+    public function packageRegistered()
+    {
+        Tender::createCurrenciesUsing(CreateCurrency::class);
+
+        Tender::updateCurrenciesUsing(UpdateCurrency::class);
+
+        Tender::deleteCurrenciesUsing(DeleteCurrency::class);
     }
 }

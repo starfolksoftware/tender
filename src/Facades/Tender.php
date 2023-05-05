@@ -1,6 +1,6 @@
 <?php
 
-namespace Tender\Tender\Facades;
+namespace Tender\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

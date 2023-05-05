@@ -34,13 +34,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Tender\\Tender\\": "src/",
-            "Tender\\Tender\\Database\\Factories\\": "database/factories/"
+            "Tender\\": "src/",
+            "Tender\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tender\\Tender\\Tests\\": "tests/"
+            "Tender\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -60,10 +60,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Tender\\Tender\\TenderServiceProvider"
+                "Tender\\TenderServiceProvider"
             ],
             "aliases": {
-                "Tender": "Tender\\Tender\\Facades\\Tender"
+                "Tender": "Tender\\Facades\\Tender"
             }
         }
     },
