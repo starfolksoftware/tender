@@ -1814,5 +1814,5 @@ return [
             'decimal_mark' => '.',
             'thousands_separator' => ',',
         ],
-    ]
+    ],
 ];

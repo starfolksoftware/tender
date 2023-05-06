@@ -2,7 +2,6 @@
 
 namespace Tender;
 
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -55,9 +54,6 @@ abstract class Currency extends Model
 
     /**
      * Get all attached models of the given class to the currency.
-     *
-     * @param string $class
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
     public function entries(string $class): MorphToMany
     {

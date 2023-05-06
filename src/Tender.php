@@ -39,7 +39,7 @@ final class Tender
      */
     public static function teamModel(): string
     {
-        return static::$teamModel;
+        return self::$teamModel;
     }
 
     /**
@@ -47,9 +47,9 @@ final class Tender
      */
     public static function useTeamModel(string $model): static
     {
-        static::$teamModel = $model;
+        self::$teamModel = $model;
 
-        return new static();
+        return new self();
     }
 
     /**

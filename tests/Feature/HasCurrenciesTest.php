@@ -12,7 +12,7 @@ beforeAll(function () {
 it('can sync currency to a model', function () {
     $currency = Tender::newCurrencyModel()->factory()->create();
 
-    list($product) = TestProduct::factory()->count(5)->create();
+    [$product] = TestProduct::factory()->count(5)->create();
 
     $product->syncCurrencies($currency);
 
@@ -35,9 +35,9 @@ it('can sync currency to a model', function () {
 });
 
 it('can attach and detach currency to a model', function () {
-    list($currency1, $currency2, $currency3) = Tender::newCurrencyModel()->factory()->count(3)->create();
+    [$currency1, $currency2, $currency3] = Tender::newCurrencyModel()->factory()->count(3)->create();
 
-    list($product) = TestProduct::factory()->count(5)->create();
+    [$product] = TestProduct::factory()->count(5)->create();
 
     $product->attachCurrencies([$currency1->id, $currency2->id]);
 

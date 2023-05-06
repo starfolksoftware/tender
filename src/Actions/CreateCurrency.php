@@ -5,8 +5,8 @@ namespace Tender\Actions;
 use Illuminate\Support\Facades\Validator;
 use Tender\Contracts\CreatesCurrencies;
 use Tender\Currency;
-use Tender\Events\CurrencyCreated;
 use Tender\Events\CreatingCurrency;
+use Tender\Events\CurrencyCreated;
 use Tender\Tender;
 
 class CreateCurrency implements CreatesCurrencies

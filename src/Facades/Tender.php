@@ -5,12 +5,12 @@ namespace Tender\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Tender\Tender\Tender
+ * @see \Tender\Tender
  */
 class Tender extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \Tender\Tender\Tender::class;
+        return \Tender\Tender::class;
     }
 }
