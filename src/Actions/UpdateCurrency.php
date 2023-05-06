@@ -22,12 +22,11 @@ class UpdateCurrency implements UpdatesCurrencies
             'name' => ['required', 'string', 'max:255'],
             'code' => ['required', 'string', 'max:255'],
             'rate' => ['required', 'decimal:0,8'],
-            'precision' => ['nullable', 'string', 'max:255'],
+            'precision' => ['nullable', 'integer', 'max:255'],
             'symbol' => ['nullable', 'string', 'max:255'],
-            'symbol_first' => ['boolean'],
+            'symbol_position' => ['string', 'max:255', 'in:before,after'],
             'decimal_mark' => ['nullable', 'string', 'max:255'],
             'thousands_separator' => ['nullable', 'string', 'max:255'],
-            'default' => ['boolean'],
             'enabled' => ['boolean'],
         ])->validateWithBag('updateCurrency');
 
@@ -37,16 +36,15 @@ class UpdateCurrency implements UpdatesCurrencies
             'rate',
             'precision',
             'symbol',
-            'symbol_first',
+            'symbol_position',
             'decimal_mark',
             'thousands_separator',
-            'default',
             'enabled',
         ])->toArray());
 
         $currency->refresh();
 
-        event(new CurrencyUpdated(currency: $currency));
+        event(new CurrencyUpdated(user: $user, currency: $currency, data: $data));
 
         return $currency;
     }

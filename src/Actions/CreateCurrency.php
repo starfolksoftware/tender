@@ -22,12 +22,11 @@ class CreateCurrency implements CreatesCurrencies
             'name' => ['required', 'string', 'max:255'],
             'code' => ['required', 'string', 'max:255'],
             'rate' => ['required', 'decimal:0,8'],
-            'precision' => ['nullable', 'string', 'max:255'],
+            'precision' => ['nullable', 'integer', 'max:255'],
             'symbol' => ['nullable', 'string', 'max:255'],
-            'symbol_first' => ['boolean'],
+            'symbol_position' => ['string', 'max:255', 'in:before,after'],
             'decimal_mark' => ['nullable', 'string', 'max:255'],
             'thousands_separator' => ['nullable', 'string', 'max:255'],
-            'default' => ['boolean'],
             'enabled' => ['boolean'],
         ])->validateWithBag('createCurrency');
 
@@ -37,10 +36,9 @@ class CreateCurrency implements CreatesCurrencies
             'rate',
             'precision',
             'symbol',
-            'symbol_first',
+            'symbol_position',
             'decimal_mark',
             'thousands_separator',
-            'default',
             'enabled',
         ])->toArray();
 
@@ -48,7 +46,7 @@ class CreateCurrency implements CreatesCurrencies
             Tender::findTeamByIdOrFail($teamId)->currencies()->create($fields) :
             Tender::newCurrencyModel()->create($fields);
 
-        event(new CurrencyCreated(currency: $currency));
+        event(new CurrencyCreated(user: $user, currency: $currency, data: $data));
 
         return $currency;
     }

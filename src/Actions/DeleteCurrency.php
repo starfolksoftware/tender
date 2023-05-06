@@ -19,6 +19,6 @@ class DeleteCurrency implements DeletesCurrencies
 
         $currency->delete();
 
-        event(new CurrencyDeleted(currency: $currency));
+        event(new CurrencyDeleted(user: $user, currency: $currency));
     }
 }

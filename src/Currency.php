@@ -30,10 +30,9 @@ abstract class Currency extends Model
         'rate',
         'precision',
         'symbol',
-        'symbol_first',
+        'symbol_position',
         'decimal_mark',
         'thousands_separator',
-        'default',
         'enabled',
     ];
 
